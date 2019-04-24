@@ -15,3 +15,9 @@ Building:
 1. sudo apt-get install git
 2. git clone https://github.com/codemonkeyrawks/LATease.git
 ```
+
+Usage:
+
+```shell
+1. python slack.py --token "token url" --channel "channel" --message "message"
+```
