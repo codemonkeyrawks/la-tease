@@ -19,5 +19,6 @@ Building:
 Usage:
 
 ```shell
-1. python slack.py --token "token url" --channel "channel" --message "message"
+1. Push Message: python slack.py --token "token url" --channel "channel" --message "message" --push POST/post
+2. Pull Message: python slack.py --token "token url" --channel "channel" --push GET/get
 ```

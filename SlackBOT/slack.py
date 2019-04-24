@@ -12,23 +12,45 @@ parser = argparse.ArgumentParser(description='Slack Bot Message Parser')
 parser.add_argument('--token', help='Slack Token KEY', type=str)
 parser.add_argument('--channel', help='Channel Posted In', type=str)
 parser.add_argument('--message', help='Body of Message', type=str)
+parser.add_argument('--push', help='POST or GET', type=str)
 
 # Print Help on -H or -h
 args = parser.parse_args()
 
+# Process: Outbound Messages
+def postInput(token, channel, message):
+    try:
+        stat0 = requests.post('https://slack.com/api/chat.postMessage', headers= { 'Authorization': 'Bearer {}'.format(token) }, json={'text': message, 'channel': "#" + channel })
+        stat1 = stat0.json()
+        print(("Status : %s") % (stat1["ok"]))
+    except:
+        print("Error: Message was not sent")
+
+# Process: Inbound Messages
+def pushInput(token, channel):
+    try:
+        stat0 = requests.get('https://slack.com/api/channels.history', headers= { 'Authorization': 'Bearer {}'.format(token) })
+        stat1 = stat0.json()
+        print(("Status : %s") % (stat1["ok"]))
+    except:
+        print("Error: Message was not collected")
+
 # Options: API + Title + Message
 if (args.token == None):
     print('')
-    print("Please Specify a Correct Token Key")
+    print("Error: Please Specify a Correct Token Key")
     print('')
 elif (args.channel == None):
     print('')
-    print("Please Specify a Channel")
+    print("Error: Please Specify a Channel")
     print('')
 elif (args.message == None):
     print('')
-    print("Please Specify a Body Message")
+    print("Error: Please Specify a Body Message")
     print('')
 else:
-    temp = "#" + args.channel
-    posting = requests.post('https://slack.com/api/chat.postMessage', headers= { 'Authorization': 'Bearer {}'.format(args.token) }, json={'text': args.message, 'channel': temp })
+    # GET OR POST
+    if (args.push == "GET" or args.push == "get"):
+        pushInput(args.token,args.channel)
+    else:
+        postInput(args.token,args.channel,args.message)
