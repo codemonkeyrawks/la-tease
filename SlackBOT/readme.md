@@ -18,7 +18,7 @@ Building:
 
 Flags:
 ```shell
-  help    = Display Help
+  help/h   = Display Help
   stoken  = Slack Token
   channel = Slack Channel
   push    = POST OR GET
