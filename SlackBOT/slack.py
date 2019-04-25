@@ -11,7 +11,8 @@ import requests
 
 # Options: API + Title + Message
 parser = argparse.ArgumentParser(description='Slack Bot Message Parser')
-parser.add_argument('--stoken', help='Slack Token KEY', type=str)
+parser.add_argument('--otoken', help='Slack Token KEY', type=str)
+parser.add_argument('--btoken', help='Slack Token KEY', type=str)
 parser.add_argument('--gtoken', help='Giphy Token KEY', type=str)
 parser.add_argument('--channel', help='Channel Posted In', type=str)
 parser.add_argument('--message', help='Body of Message', type=str)
@@ -25,31 +26,38 @@ args = parser.parse_args()
 # --------------------- Slack API Section --------------------------- #
 
 # Process: Outbound Messages
-def p0Send(stoken, channel, message):
+def p0Send(btoken, channel, message):
     try:
-        stat0 = requests.post('https://slack.com/api/chat.postMessage', headers= { 'Authorization': 'Bearer {}'.format(stoken) }, json={'text': message, 'channel': "#" + channel })
+        stat0 = requests.post('https://slack.com/api/chat.postMessage', headers= { 'Authorization': 'Bearer {}'.format(btoken) }, json={'text': message, 'channel': "#" + channel })
         stat1 = stat0.json()
         print(("Status : %s") % (stat1["ok"]))
     except:
         print("Error: Message was not sent")
 
 # Process: Inbound Messages
-def p0Rec(stoken, channel):
+def p0Rec(otoken, btoken):
     try:
-        stat0 = requests.get('https://slack.com/api/channels.history', headers= { 'Authorization': 'Bearer {}'.format(stoken) })
+        stat0 = requests.get('https://slack.com/api/conversations.list', headers= { 'Authorization': 'Bearer {}'.format(btoken) })
         stat1 = stat0.json()
-        print(("Status : %s") % (stat1["ok"]))
+        channel = stat1["channels"][1]["id"]
+        stat3 = requests.get('https://slack.com/api/conversations.history?' + 'channel=' + channel, headers= { 'Authorization': 'Bearer {}'.format(otoken) })
+        stat4 = stat3.json()
+        print("")
+        print(("Message: %s") % (stat4["messages"][0]["text"]))
+        print("")
+        print(("Status : %s") % (stat4["ok"]))
+        print("")
     except:
         print("Error: Message was not collected")
 
 # Process: Random Message : Images
-def p1Send(stoken, channel, message, ptoken, search):
+def p1Send(btoken, channel, message, ptoken, search):
     try:
         stat0 = requests.get("http://api.giphy.com/v1/gifs/search?" + "q=" + search + "&api_key=" + ptoken + "&limit=1")
         stat1 = stat0.json()
         stat2 = stat1["data"][0]["images"]["downsized"]["url"]
         print(stat2)
-        stat3 = requests.post('https://slack.com/api/chat.postMessage', headers= { 'Authorization': 'Bearer {}'.format(stoken) }, json={'text': stat2, 'channel': "#" + channel })
+        stat3 = requests.post('https://slack.com/api/chat.postMessage', headers= { 'Authorization': 'Bearer {}'.format(btoken) }, json={'text': stat2, 'channel': "#" + channel })
         stat4 = stat3.json()
         print(("Status : %s") % (stat4["ok"]))
     except:
@@ -58,7 +66,11 @@ def p1Send(stoken, channel, message, ptoken, search):
 # --------------------- Process Control Section --------------------- #
 
 # Options: API + Title + Message
-if (args.stoken == None):
+if (args.otoken == None):
+    print('')
+    print("Error: Please Specify a Correct Slack Token Key")
+    print('')
+if (args.btoken == None):
     print('')
     print("Error: Please Specify a Correct Slack Token Key")
     print('')
@@ -77,7 +89,7 @@ elif (args.random == None):
 else:
     # GET, POST OR ERROR on Slack
     if (args.push.lower() == "get"):
-          p0Rec(args.stoken, args.channel)
+          p0Rec(args.otoken, args.btoken)
     elif (args.push.lower() == "post"):
         if (args.message == None):
             print('')
@@ -85,7 +97,7 @@ else:
             print('')
         else:
             if (args.random.lower() == "no"):
-                p0Send(args.stoken, args.channel, args.message)
+                p0Send(args.btoken, args.channel, args.message)
             else:
                 if (args.gtoken == None):
                     print('')
@@ -97,6 +109,6 @@ else:
                         print("Error: Please Specify a Correct Search String")
                         print('')
                     else:
-                        p1Send(args.stoken, args.channel, args.message, args.gtoken, args.search)
+                        p1Send(args.btoken, args.channel, args.message, args.gtoken, args.search)
     else:
         print("Error: Please Specify GET or POST")
