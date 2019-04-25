@@ -25,7 +25,7 @@ Usage:
 2. Pull #1: python slack.py --stoken "token url" --channel "channel" --push get
 ```
 
-Example:
+Example: Image is Copyrighted (giphy)
 
 ![Imgur Image](http://i.imgur.com/kaxpwSz.png)
 
