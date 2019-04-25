@@ -16,6 +16,11 @@ Building:
 2. git clone https://github.com/codemonkeyrawks/LATease.git
 ```
 
+Flags:
+```shell
+- h = Display Help
+```
+
 Usage:
 
 ```shell
