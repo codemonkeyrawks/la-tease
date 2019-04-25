@@ -16,7 +16,7 @@ Building:
 2. git clone https://github.com/codemonkeyrawks/LATease.git
 ```
 
-Flags:
+CMD Flags:
 ```shell
   stoken  = Slack Token
   gtoken  = Giphy Token
@@ -29,6 +29,10 @@ Flags:
 
 Usage:
 
+'''shell
+This projects main goal is to take in user action input: !command and fork out tweaked messages baised on the inputted command string. Ex: !time would return 10:02 AM UTC. This project also supports giphy images which can be used for other things like breakage.
+'''
+
 ```shell
 Push 1: 
 python slack.py --stoken "token url" --channel "channel" --push post --random no
@@ -38,7 +42,7 @@ Push 2:
 python slack.py --stoken "token url" --channel "channel" --push post --random yes
  --gtoken "token_url" --search "funny cats"
 
-Pull 1: 
+Pull 1: (*todo)
 python slack.py --stoken "token url" --channel "channel" --push get
 ```
 
