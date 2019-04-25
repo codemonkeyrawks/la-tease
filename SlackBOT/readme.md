@@ -27,7 +27,8 @@ Push 2:
 python slack.py --stoken "token url" --channel "channel" --push post --random yes
  --gtoken "token_url" --search "funny cats"
 
-Pull 1: python slack.py --stoken "token url" --channel "channel" --push get
+Pull 1: 
+python slack.py --stoken "token url" --channel "channel" --push get
 ```
 
 Example: Image is Copyrighted (giphy)
