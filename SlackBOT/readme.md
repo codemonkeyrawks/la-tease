@@ -27,4 +27,5 @@ Usage:
 
 Example:
 
-![alt text](i.imgur.com/kaxpwSz.png "Funny Cat")
+![Imgur Image](http://i.imgur.com/kaxpwSz.png)
+
