@@ -30,9 +30,9 @@ CMD Flags:
 Usage:
 
 ```shell
-This projects main goal is to take in user action input: !command and fork out tweaked messages
- baised on the inputted command string. Ex: !time would return 10:02 AM UTC. This project also
- supports giphy images which can be used for other things like breakage.
+This projects main goal is to take in user action input and fork out tweaked messages
+baised on the inputted string. Ex: clock would return 10:02 AM UTC. This project also
+supports giphy images which can be used for other things like breakage.
 ```
 
 ```shell
