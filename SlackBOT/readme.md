@@ -18,7 +18,13 @@ Building:
 
 Flags:
 ```shell
-- h = Display Help
+  help    = Display Help
+  stoken  = Slack Token
+  channel = Slack Channel
+  push    = POST OR GET
+  random  = YES OR NO
+  gtoken  = Giphy Token
+  search  = Giphy Search
 ```
 
 Usage:
