@@ -19,10 +19,11 @@ Building:
 Flags:
 ```shell
   stoken  = Slack Token
+  gtoken  = Giphy Token
   channel = Slack Channel
+  message = Slack Message
   push    = POST OR GET
   random  = YES OR NO
-  gtoken  = Giphy Token
   search  = Giphy Search
 ```
 
