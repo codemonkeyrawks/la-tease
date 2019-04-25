@@ -19,9 +19,12 @@ Building:
 Usage:
 
 ```shell
-Push 1: python slack.py --stoken "token url" --channel "channel" --push post --random no
+Push 1: 
+python slack.py --stoken "token url" --channel "channel" --push post --random no
  --message "message"
-Push 2: python slack.py --stoken "token url" --channel "channel" --push post --random yes
+
+Push 2: 
+python slack.py --stoken "token url" --channel "channel" --push post --random yes
  --gtoken "token_url" --search "funny cats"
 
 Pull 1: python slack.py --stoken "token url" --channel "channel" --push get
