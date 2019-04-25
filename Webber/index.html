@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Meta Information -->
+<meta charset="UTF-8">
+<meta name="description" content="Webber">
+<meta name="keywords" content="HTML,CSS,JavaScript">
+<meta name="author" content="Arcademan">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Title Area -->
+<title>Webber</title>
+
+<!-- Normalize: CSS -->
+<link rel="stylesheet" href="css/normalize.css" />
+
+<!-- BootStrap: CSS -->
+<link rel="stylesheet" href="css/bootstrap.css" />
+
+<!-- JQuery -> BootStrap: JavaScript -->
+<script src="scripts/jquery.js"></script>
+<script src="scripts/bootstrap.js"></script>
+
+<!-- Chart.js -->
+<script src="scripts/chart.js"></script>
+</head>
+
+<!-- Main Body -->
+<body class="container-fluid text-center" style="padding: 100px; background: #F5F5F5">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12" style="max-width: 800px">
+    	    <h2>Horizontal Chart:</h2>
+            </br>
+        </div>
+    </div>
+
+    <!-- 12 Column Row: 12 -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <canvas id="chartarea" width="800" height="400"></canvas>
+        </div>
+    </div>
+
+    <script>
+	var ctx = document.getElementById("chartarea").getContext('2d');
+	var myChart = new Chart(ctx, {
+    	    type: 'bar',
+            data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+            },
+            options: {
+                legend: {
+                    display: false,
+                },
+                responsive: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+Bootstrap.js - MIT Licence
+Chart.js - MIT Licence
